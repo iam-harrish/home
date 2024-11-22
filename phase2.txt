@@ -1,0 +1,114 @@
+Phase 2 Document: Data Wrangling and Analysis for Dynamic Pricing in E-commerce
+
+Introduction
+Phase 2 of our project is dedicated to data wrangling and analysis, essential steps in preparing the raw dataset for implementing a dynamic pricing system for an e-commerce platform. This phase involves employing various data manipulation techniques using Python to clean, transform, and explore the dataset. The objective is to ensure data quality and derive meaningful insights to optimize pricing strategies.
+
+Objectives:
+
+Cleanse the dataset by addressing inconsistencies, errors, and missing values to ensure data integrity.
+Explore the dataset's characteristics through exploratory data analysis (EDA) to understand price distributions, demand patterns, and competitor behavior.
+Engineer relevant features to enhance model performance for dynamic pricing decisions.
+Document the data wrangling process comprehensively to ensure transparency and reproducibility.
+Dataset Description
+The dataset comprises historical transactional data from an e-commerce platform, including product information, pricing details, customer demographics, and sales data. Each record represents a transaction or interaction between customers and products, forming the foundation for implementing dynamic pricing strategies.
+
+Data Wrangling Techniques
+
+Data Description
+Head: Display the first few rows of the dataset for initial inspection.
+Tail: Examine the last few rows of the dataset to ensure completeness.
+Info: Obtain information about the dataset structure, data types, and memory usage.
+Describe: Generate descriptive statistics for numerical features to understand their distributions and central tendencies.
+python
+Copy code
+# Sample code for data description
+print(data.head())
+print(data.tail())
+print(data.info())
+print(data.describe())
+Null Data Handling
+Null Data Identification: Identify missing values in the dataset.
+Null Data Imputation: Fill missing values with appropriate strategies.
+Null Data Removal: Eliminate rows or columns with excessive missing values.
+python
+Copy code
+# Sample code for null data handling
+print(data.isnull().sum())
+data = data.dropna()  # Drop rows with missing values
+Data Validation
+Data Integrity Check: Verify data consistency and integrity to eliminate errors.
+Data Consistency Verification: Ensure data consistency across different columns or datasets.
+python
+Copy code
+# Sample code for data validation
+# Check for unique values in a column
+print(data['column_name'].unique())
+Data Reshaping
+Reshaping Rows and Columns: Transform the dataset into a suitable format for analysis.
+Transposing Data: Convert rows into columns and vice versa as needed.
+python
+Copy code
+# Sample code for data reshaping
+# Transpose the dataset
+transposed_data = data.T
+Data Merging
+Combining Datasets: Merge multiple datasets or data sources to enrich the information available for analysis.
+Joining Data: Join datasets based on common columns or keys.
+python
+Copy code
+# Sample code for data merging
+merged_data = pd.merge(data1, data2, on='common_column')
+Data Aggregation
+Grouping Data: Group dataset rows based on specific criteria.
+Aggregating Data: Compute summary statistics for grouped data.
+python
+Copy code
+# Sample code for data aggregation
+grouped_data = data.groupby('category_column')
+aggregated_data = grouped_data.agg({'numerical_column': 'mean'})
+Data Analysis Techniques
+
+Exploratory Data Analysis (EDA)
+Univariate Analysis: Analyze price distributions and other individual variables.
+Bivariate Analysis: Investigate relationships between pricing and customer behavior.
+Multivariate Analysis: Explore interactions among multiple variables to uncover pricing trends and patterns.
+python
+Copy code
+# Sample code for exploratory data analysis
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Univariate analysis - Histogram of prices
+sns.histplot(data['price'], bins=20)
+plt.show()
+
+# Bivariate analysis - Scatter plot of price vs. demand
+sns.scatterplot(data['price'], data['demand'])
+plt.show()
+
+# Multivariate analysis - Pair plot of selected features
+sns.pairplot(data[['price', 'demand', 'competitor_price']])
+plt.show()
+Feature Engineering
+Customer Segmentation: Create customer segments based on purchasing behavior.
+Temporal Analysis: Incorporate time-related features to capture temporal pricing trends.
+Competitor Analysis: Engineer features related to competitor pricing and market dynamics.
+python
+Copy code
+# Sample code for feature engineering
+# Customer segmentation based on purchase behavior
+data['customer_segment'] = pd.cut(data['purchase_frequency'], bins=3, labels=['low', 'medium', 'high'])
+
+# Temporal analysis - Extract month and day of week from timestamp
+data['month'] = data['timestamp'].dt.month
+data['day_of_week'] = data['timestamp'].dt.dayofweek
+
+# Competitor analysis - Compute price difference with competitors
+data['price_difference'] = data['price'] - data['competitor_price']
+Assumed Scenario
+
+Scenario: The project aims to implement a dynamic pricing strategy to optimize product prices based on demand and market conditions.
+Objective: Enhance revenue and competitiveness by adjusting prices dynamically in response to customer behavior and competitor pricing.
+Target Audience: E-commerce platform users seeking competitive pricing and value.
+Conclusion
+Phase 2 focuses on data preparation and analysis to lay the groundwork for implementing a dynamic pricing system in an e-commerce setting. By leveraging Python-based data manipulation techniques and advanced analytics, we aim to extract actionable insights for optimizing pricing strategies and improving business outcomes. This phase sets the stage for developing and deploying dynamic pricing algorithms in the subsequent phases of the project

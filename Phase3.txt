@@ -1,0 +1,133 @@
+## Phase 3 Document: Data Visualization for Dynamic Pricing on E-commerce Platform
+
+### Introduction
+
+Phase 3 of our project focuses on data visualization for dynamic pricing strategies on an e-commerce platform. Data visualization plays a critical role in understanding customer behavior, product trends, and pricing dynamics. Effective visualizations empower stakeholders to make informed decisions and optimize pricing strategies.
+
+### Objectives
+
+1. **Create Informative and Visually Appealing Visualizations**: Develop visualizations to explore and communicate insights related to dynamic pricing strategies.
+2. **Utilize Various Visualization Techniques**: Apply diverse visualization methods to represent pricing data effectively.
+3. **Enhance User Engagement and Understanding**: Implement interactive visualizations to improve engagement and facilitate comprehension of pricing dynamics.
+4. **Document the Data Visualization Process**: Provide comprehensive documentation for transparency and reproducibility of pricing analysis.
+
+### Dataset Description
+
+The dataset used for visualization contains e-commerce transactional data, including product details, customer profiles, purchase history, pricing information, and user interactions.
+
+### Data Visualization Techniques
+
+1. **Univariate Visualizations**
+   - **Histograms**: Display the distribution of product prices.
+
+     ```python
+     import matplotlib.pyplot as plt
+     plt.hist(data['price'], bins=20)
+     plt.xlabel('Price')
+     plt.ylabel('Frequency')
+     plt.title('Histogram of Product Prices')
+     plt.show()
+     ```
+
+     ![Histogram](Graph_Screenshot)
+
+   - **Bar Charts**: Visualize the frequency distribution of product categories.
+
+     ```python
+     plt.bar(data['category'].value_counts().index, data['category'].value_counts().values)
+     plt.xlabel('Category')
+     plt.ylabel('Frequency')
+     plt.title('Bar Chart of Product Categories')
+     plt.show()
+     ```
+
+     ![Bar Chart](Graph_Screenshot)
+
+2. **Bivariate Visualizations**
+   - **Scatter Plots**: Show the relationship between price and product attributes.
+
+     ```python
+     plt.scatter(data['product_attribute'], data['price'])
+     plt.xlabel('Product Attribute')
+     plt.ylabel('Price')
+     plt.title('Scatter Plot of Price vs Product Attribute')
+     plt.show()
+     ```
+
+     ![Scatter Plot](Graph_Screenshot)
+
+   - **Box Plots**: Illustrate price distribution across different categories.
+
+     ```python
+     import seaborn as sns
+     sns.boxplot(x='category', y='price', data=data)
+     plt.xlabel('Category')
+     plt.ylabel('Price')
+     plt.title('Box Plot of Product Prices by Category')
+     plt.show()
+     ```
+
+     ![Box Plot](Graph_Screenshot)
+
+3. **Multivariate Visualizations**
+   - **Pair Plots**: Visualize pairwise relationships between product attributes.
+
+     ```python
+     sns.pairplot(data[['price', 'product_attribute1', 'product_attribute2']])
+     plt.title('Pair Plot of Product Attributes and Prices')
+     plt.show()
+     ```
+
+     ![Pair Plot](Graph_Screenshot)
+
+4. **Interactive Visualizations**
+   - **Interactive Scatter Plots**: Provide tooltips and interactive features for price analysis.
+
+     ```python
+     import plotly.express as px
+     fig = px.scatter(data, x='product_attribute1', y='product_attribute2', color='price', hover_data=['product_name'])
+     fig.show()
+     ```
+
+     ![Interactive Scatter Plot](Graph_Screenshot)
+
+   - **Interactive Dashboards**: Develop dynamic dashboards to visualize pricing trends and customer behavior.
+
+     ```python
+     import dash
+     import dash_core_components as dcc
+     import dash_html_components as html
+
+     app = dash.Dash(__name__)
+
+     app.layout = html.Div([
+         dcc.Graph(
+             id='interactive-price-plot',
+             figure={
+                 'data': [
+                     {'x': data['product_attribute1'], 'y': data['price'], 'mode': 'markers', 'type': 'scatter'}
+                 ],
+                 'layout': {
+                     'title': 'Interactive Price Scatter Plot',
+                     'xaxis': {'title': 'Product Attribute 1'},
+                     'yaxis': {'title': 'Price'}
+                 }
+             }
+         )
+     ])
+
+     if __name__ == '__main__':
+         app.run_server(debug=True)
+     ```
+
+     ![Interactive Dashboard](Graph_Screenshot)
+
+### Assumed Scenario
+
+- **Scenario**: The project aims to optimize dynamic pricing strategies on an e-commerce platform based on customer behavior and product attributes.
+- **Objective**: Enhance decision-making and understanding through intuitive visual representations of pricing data.
+- **Target Audience**: Project stakeholders including pricing analysts, marketing teams, and executives seeking actionable insights to improve pricing strategies.
+
+### Conclusion
+
+Phase 3 emphasizes leveraging data visualization techniques to uncover insights and patterns in pricing data for dynamic pricing strategies on an e-commerce platform. By utilizing various visualization methods and assuming a scenario aimed at optimizing pricing decisions, we aim to facilitate better decision-making and understanding of customer behavior and pricing dynamics.
